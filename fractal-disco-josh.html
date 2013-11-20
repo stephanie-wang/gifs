@@ -35,6 +35,7 @@
 <script>
 var JOSHWIDTH = 250;
 var JOSHHEIGHT = 281;
+var MINSIZE = 25;
 
 var maxWidth = window.innerWidth;
 var maxHeight = window.innerHeight;
@@ -46,22 +47,34 @@ if (maxWidth * JOSHHEIGHT / JOSHWIDTH > maxHeight) {
 	firstHeight = maxWidth * JOSHHEIGHT / JOSHWIDTH;
 }
 
-var firstJosh = cloneJosh(firstWidth, firstHeight, {top: 0, left: (maxWidth - firstWidth) / 2 });
-fractalJosh(firstJosh);
+var firstJosh = cloneJosh(firstWidth, firstHeight, {top: (maxHeight - firstHeight) / 2, left: (maxWidth - firstWidth) / 2 });
+animateJosh(firstJosh);
+fractalJosh(firstJosh, 1);
 
-function fractalJosh($josh) {
+function fractalJosh($josh, level) {
 	var width = $josh.width() / 2;
 	var height = $josh.height() / 2;
+	if (width < MINSIZE || height < MINSIZE) {
+		return;
+	}
 	var top = parseFloat($josh.css('top'));
 	var left = parseFloat($josh.css('left'));
 	setTimeout(function() {
+		var joshClones = [];
 		for (i = 0; i < 2; i++) {
 			for (j = 0; j < 2; j++) {
-				var $joshClone = cloneJosh(width, height, {top: top + j * height, left: left + i * width});
-				fractalJosh($joshClone);
+				joshClones.push(cloneJosh(width, height, {top: top + j * height, left: left + i * width}));
 			}
 		}
 		$josh.remove();
+
+		if ($('body').find('.joshContainer').size() >= Math.pow(4,  level)) {
+			animateJosh($('body'));
+		}
+
+		for (i in joshClones) {
+			fractalJosh(joshClones[i], level + 1);
+		}
 	}, 4000);
 }
 
@@ -75,11 +88,11 @@ function cloneJosh(width, height, position) {
 	joshClone.height(height);
 	joshClone.css(position);
 	$("body").append(joshClone);
-	animateJosh(joshClone);
 	return joshClone;
 }
 
 function animateJosh($josh) {
+	
 	var josh1 = $josh.find(".josh1");
 	var josh2 = $josh.find(".josh2");
 	var josh3 = $josh.find(".josh3");
