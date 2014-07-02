@@ -7,7 +7,7 @@ Dancer.setOptions({
 var
   dancer = new Dancer(),
   kick = dancer.createKick({
-    threshhold: 0.01,
+    threshhold: 0.05,
     onKick: function ( mag ) {
       console.log('Kick!');
     },
