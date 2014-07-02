@@ -1,3 +1,17 @@
+function flashPoois() {
+    /*
+    * Call this guy to flash Poois. :)
+    */
+    var pooisStyle = document.getElementById('louis2').style
+    var displayed = pooisStyle.display;
+    if (displayed == 'none' || displayed == '') {
+        displayed = 'block';
+    } else {
+        displayed = 'none';
+    }
+    pooisStyle.display = displayed
+}
+
 var
   audio  = document.getElementsByTagName('audio')[0],
   dancer = new Dancer(),
