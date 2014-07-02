@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style>
+		.joshContainer {
+			position: absolute;
+		}
+		.josh1, .josh2, .josh3 {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+
+</head>
+
+<body>
+<iframe style="position:absolute; visibility: hidden" width="0" height="0" src="http://www.youtube.com/embed/AjPau5QYtYs?autoplay=1&start=2" frameborder="0" allowfullscreen></iframe>
+
+
+<div class="joshContainer">
+	<img class="josh1" src="disco-josh1.jpg" />
+	<img class="josh2" src="disco-josh2.jpg" />
+	<img class="josh3" src="disco-josh3.jpg" />
+</div>
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+<script>
+var JOSHWIDTH = 250;
+var JOSHHEIGHT = 281;
+var MINSIZE = 25;
+
+var maxWidth = window.innerWidth;
+var maxHeight = window.innerHeight;
+var firstWidth = maxWidth;
+var firstHeight = maxHeight;
+if (maxWidth * JOSHHEIGHT / JOSHWIDTH > maxHeight) {
+	firstWidth = maxHeight * JOSHWIDTH / JOSHHEIGHT;
+} else {
+	firstHeight = maxWidth * JOSHHEIGHT / JOSHWIDTH;
+}
+
+var firstJosh = cloneJosh(firstWidth, firstHeight, {top: (maxHeight - firstHeight) / 2, left: (maxWidth - firstWidth) / 2 });
+animateJosh(firstJosh);
+fractalJosh(firstJosh, 1);
+
+function fractalJosh($josh, level) {
+	var width = $josh.width() / 2;
+	var height = $josh.height() / 2;
+	if (width < MINSIZE || height < MINSIZE) {
+		return;
+	}
+	var top = parseFloat($josh.css('top'));
+	var left = parseFloat($josh.css('left'));
+	setTimeout(function() {
+		var joshClones = [];
+		for (i = 0; i < 2; i++) {
+			for (j = 0; j < 2; j++) {
+				joshClones.push(cloneJosh(width, height, {top: top + j * height, left: left + i * width}));
+			}
+		}
+		$josh.remove();
+
+		if ($('body').find('.joshContainer').size() >= Math.pow(4,  level)) {
+			animateJosh($('body'));
+		}
+
+		for (i in joshClones) {
+			fractalJosh(joshClones[i], level + 1);
+		}
+	}, 4000);
+}
+
+function cloneJosh(width, height, position) {
+	var joshClone = $('<div class="joshContainer">' +
+		'<img class="josh1" src="disco-josh1.jpg" />' +
+		'<img class="josh2" src="disco-josh2.jpg" />' +
+		'<img class="josh3" src="disco-josh3.jpg" />' +
+	'</div>');
+	joshClone.width(width);
+	joshClone.height(height);
+	joshClone.css(position);
+	$("body").append(joshClone);
+	return joshClone;
+}
+
+function animateJosh($josh) {
+	
+	var josh1 = $josh.find(".josh1");
+	var josh2 = $josh.find(".josh2");
+	var josh3 = $josh.find(".josh3");
+	setTimeout(function() {
+		josh3.hide()
+		setTimeout(function() {
+			josh2.hide()
+			setTimeout(function() {
+				josh2.show()
+				setTimeout(function() {
+					josh3.show();
+					animateJosh($josh);
+				}, 500);
+			}, 500);
+		}, 500);
+	}, 500);
+}
+
+
+</script>
+
+</html>
