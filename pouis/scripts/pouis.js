@@ -17,12 +17,10 @@ var
   dancer = new Dancer(),
   kick = dancer.createKick({
     onKick: function ( mag ) {
-      console.log('Kick!');
-    },
-    offKick: function ( mag ) {
-      console.log('no kick :(');
+      flashPoois()
     },
     threshold: 0.05,
+    frequency: [0, 20]
   });
 
 // Let's turn this kick on right away
