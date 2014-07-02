@@ -1,4 +1,7 @@
 function flashPoois() {
+    /*
+    * Call this guy to flash Poois. :)
+    */
     var pooisStyle = document.getElementById('louis2').style
     var displayed = pooisStyle.display;
     if (displayed == 'none' || displayed == '') {
