@@ -1,4 +1,15 @@
-// To enable flash fallback, specify the paths for the flashSWF and flashJS
+function flashPoois() {
+    var pooisStyle = document.getElementById('louis2').style
+    var displayed = pooisStyle.display;
+    if (displayed == 'none' || displayed == '') {
+        displayed = 'block';
+    } else {
+        displayed = 'none';
+    }
+    pooisStyle.display = displayed
+}
+
+ // To enable flash fallback, specify the paths for the flashSWF and flashJS
 Dancer.setOptions({
   flashJS  : '../submodules/dancer.js/lib/soundmanager2.js',
   flashSWF : '../submodules/dancer.js/lib/soundmanager2.swf'
