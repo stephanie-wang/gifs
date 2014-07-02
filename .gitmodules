@@ -1,0 +1,3 @@
+[submodule "pouis/submodules/dancer.js"]
+	path = pouis/submodules/dancer.js
+	url = https://github.com/jsantell/dancer.js.git
