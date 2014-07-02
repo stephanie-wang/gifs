@@ -12,34 +12,18 @@
         display: none;
     }
     </style>
-</head>
 
-<body>
+    <script src="submodules/dancer.js/src/dancer.js"></script>
+    <script src="submodules/dancer.js/src/support.js"></script>
+    <script src="submodules/dancer.js/src/kick.js"></script>
+    <script src="submodules/dancer.js/src/adapterWebAudio.js"></script>
+    <script src="submodules/dancer.js/src/adapterMoz.js"></script>
+    <script src="submodules/dancer.js/src/adapterFlash.js"></script>
+    <script src="submodules/dancer.js/lib/fft.js"></script>
+    <script src="submodules/dancer.js/lib/flash_detect.js"></script>
+    <script src="submodules/dancer.js/plugins/dancer.fft.js"></script>
 
-<script src="submodules/dancer.js/src/dancer.js"></script>
-<script src="submodules/dancer.js/src/support.js"></script>
-<script src="submodules/dancer.js/src/kick.js"></script>
-<script src="submodules/dancer.js/src/adapterWebAudio.js"></script>
-<script src="submodules/dancer.js/src/adapterMoz.js"></script>
-<script src="submodules/dancer.js/src/adapterFlash.js"></script>
-<script src="submodules/dancer.js/lib/fft.js"></script>
-<script src="submodules/dancer.js/lib/flash_detect.js"></script>
-<script src="submodules/dancer.js/plugins/dancer.fft.js"></script>
-
-<script src="scripts/pouis.js"></script>
-
-    <script>
-        function flashPoois() {
-            var pooisStyle = document.getElementById('louis2').style
-            var displayed = pooisStyle.display;
-            if (displayed == 'none' || displayed == '') {
-                displayed = 'block';
-            } else {
-                displayed = 'none';
-            }
-            pooisStyle.display = displayed
-        }
-    </script>
+    <script src="scripts/pouis.js"></script>
 </head>
 
 <body>
