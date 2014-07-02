@@ -16,19 +16,16 @@ var
   dancer = new Dancer(),
   kick = dancer.createKick({
     onKick: function ( mag ) {
-      flashPoois();
-      console.log(dancer.getTime());
+      flashPoois()
     },
     threshold: 0.05,
+    frequency: [0, 20]
   });
 
 
 // Let's turn this kick on right away
 kick.on();
 
-dancer.between(0, 30, zoomPoois
-).onceAt(30, function() {
-  kick.on();
-}).load({src : 'jaws.mp3'});
+dancer.load({src : 'jaws.mp3'});
 dancer.play();
 
